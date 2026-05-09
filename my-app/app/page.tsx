@@ -1,8 +1,11 @@
+import Hero from "@/components/Hero";
+import ProductView from "@/components/ProductView";
 
 export default function Home() {
   return (
-    <div>
-      HI
-    </div>
+    <>
+      <Hero />
+      <ProductView />
+    </>
   );
 }
