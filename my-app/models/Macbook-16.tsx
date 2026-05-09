@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React from 'react'
 import type { ThreeElements } from '@react-three/fiber'
@@ -51,8 +51,10 @@ type GLTFResult = GLTF & {
   }
 }
 
-export function MacModel14(props: ThreeElements['group']) {
-  const { nodes, materials } = useGLTF('/models/macbook-14-transformed.glb') as unknown as GLTFResult;
+export function Macbook16(props: ThreeElements['group']) {
+  const { nodes, materials } = useGLTF(
+    '/models/macbook-16-transformed.glb'
+  ) as unknown as GLTFResult
   const texture = useTexture('/screen.png')
   return (
     <group {...props} dispose={null}>
@@ -81,4 +83,4 @@ export function MacModel14(props: ThreeElements['group']) {
   )
 }
 
-useGLTF.preload('/models/macbook-14-transformed.glb')
+useGLTF.preload('/models/macbook-16-transformed.glb')

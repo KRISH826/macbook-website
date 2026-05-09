@@ -1,9 +1,11 @@
 "use client"
 
+import { MacModel14 } from '@/models/Macbook-14';
 import useMacBookStore from '@/store'
-import { Box, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
+import StudioLight from './productview/StudioLight';
 
 const ProductView = () => {
     const {color, scale, setColor, setScale} = useMacBookStore();
@@ -27,8 +29,13 @@ const ProductView = () => {
                     </div>
                 </div>
             </div>
-            <Canvas id="canvas" camera={{ position: [0, 0, 15], fov: 50, near: 0.1, far: 100 }}>
-                <Box position={[0, 0, 0]} scale={10 * scale}></Box>
+            <Canvas
+                id="canvas"
+                camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}
+                gl={{ antialias: true, toneMappingExposure: 1.3 }}
+            >
+                <StudioLight />
+                <MacModel14 scale={scale} position={[0, 0, 0]} />
                 <OrbitControls enableZoom={false} enablePan={false} />
             </Canvas>
         </section>
