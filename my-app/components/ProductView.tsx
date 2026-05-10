@@ -1,14 +1,16 @@
 "use client"
 
-import { MacModel14 } from '@/models/Macbook-14';
 import useMacBookStore from '@/store'
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
 import StudioLight from './productview/StudioLight';
+import {useMediaQuery} from "react-responsive"
+import ModelSwitcher from './productview/ModelSwitcher';
 
 const ProductView = () => {
     const {color, scale, setColor, setScale} = useMacBookStore();
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     return (
         <section id='product-viewer'>
             <h2>Take a closer look</h2>
@@ -23,7 +25,7 @@ const ProductView = () => {
                         <div className={clsx('bg-neutral-900', scale === 0.06 ? 'bg-white text-black' : 'bg-transparent text-white')} onClick={() => setScale(0.06)}>
                             <p>14"</p>
                         </div>
-                        <div className={clsx('bg-neutral-900', scale === 0.1 ? 'bg-white text-black' : 'bg-transparent text-white')} onClick={() => setScale(0.1)}>
+                        <div className={clsx('bg-neutral-900', scale === 0.08 ? 'bg-white text-black' : 'bg-transparent text-white')} onClick={() => setScale(0.08)}>
                             <p>16"</p>
                         </div>
                     </div>
@@ -35,8 +37,8 @@ const ProductView = () => {
                 gl={{ antialias: true, toneMappingExposure: 1.3 }}
             >
                 <StudioLight />
-                <MacModel14 scale={scale} position={[0, 0, 0]} />
-                <OrbitControls enableZoom={false} enablePan={false} />
+                <ModelSwitcher scale={isMobile ? scale - 0.03 : scale} />
+                {/* <OrbitControls enableZoom={false} enablePan={false} /> */}
             </Canvas>
         </section>
     )
