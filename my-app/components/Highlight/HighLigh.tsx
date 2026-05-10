@@ -1,25 +1,36 @@
+"use client"
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useMediaQuery } from "react-responsive"
 
-
-
 const HighLight = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     useGSAP(() => {
-        gsap.fromTo([".left-column", ".right-column"],
-            { opacity: 0, y: 30 },
-            {
-                opacity: 1.5,
-                y: 0,
-                ease: "power1.out",
-                scrollTrigger: {
-                    trigger: ".content p",
-                    start: "top bottom",
-                    end: "top center",
-                    scrub: 1.5,
-                    invalidateOnRefresh: true,
-                },
+        gsap.set([".left-column", ".right-column"], {
+            opacity: 0,
+            y: 50,
+        })
+        gsap.to([".left-column", ".right-column"], {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            stagger: 0.3,
+            duration: 1.2,
+
+            scrollTrigger: {
+                trigger: "#highlights",
+
+                start: isMobile
+                    ? "top 85%"
+                    : "top 70%",
+
+                end: "bottom center",
+
+                scrub: 1,
+
+                invalidateOnRefresh: true,
+            },
         })
     })
     return (

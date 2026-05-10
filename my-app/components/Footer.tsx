@@ -5,8 +5,8 @@ import { footerLinks } from "@/app/constants"
 const Footer = () => {
     return (
         <footer>
-            <div className="info">
-                <p>More ways to shop: Find an Apple Store or other retailer near you. Or call 000800 040 1966.</p>
+            <div className="info flex gap-4 items-center">
+                <p className="flex-1">More ways to shop: Find an Apple Store or other retailer near you. Or call 000800 040 1966.</p>
                 <img src="/logo.svg" alt ="Apple logo"/>
             </div>
 
