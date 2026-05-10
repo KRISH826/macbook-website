@@ -7,32 +7,28 @@ import { useMediaQuery } from "react-responsive"
 const HighLight = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     useGSAP(() => {
+        // Initial State
         gsap.set([".left-column", ".right-column"], {
             opacity: 0,
-            y: 50,
+            y: 80, // Thoda kam travel distance better lagta hai
         })
+
+        // Smooth Reveal Animation
         gsap.to([".left-column", ".right-column"], {
             opacity: 1,
             y: 0,
-            ease: "power2.out",
-            stagger: 0.3,
+            ease: "power3.out",
+            stagger: 0.3, // Columns ke beech thoda zada gap
             duration: 1.2,
 
             scrollTrigger: {
                 trigger: "#highlights",
-
-                start: isMobile
-                    ? "top 85%"
-                    : "top 70%",
-
-                end: "bottom center",
-
-                scrub: 1,
-
+                start: isMobile ? "top top" : "top 15%",
+                toggleActions: "play none none reverse", 
                 invalidateOnRefresh: true,
             },
         })
-    })
+    }, { dependencies: [isMobile] }) // Dependency lazmi hai taaki mobile resize pe refresh ho
     return (
         <section id="highlights">
             <h2>There’s never been a better time to upgrade.</h2>
@@ -58,11 +54,7 @@ const HighLight = () => {
                     </div>
                     <div>
                         <img src="/battery.png" alt="Battery" />
-                        <p>Up to
-                            <span className="green-gradient">{' '}14 more hours{' '}</span>
-                            battery life.
-                            <span className="text-dark-100">{' '}(Up to 24 hours total.)
-                            </span></p>
+                        <p>Up to <span className="green-gradient">14 more hours</span> battery life. <span className="text-dark-100">(Up to 24 hours total.)</span></p>
                     </div>
                 </div>
             </div>

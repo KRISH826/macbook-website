@@ -24,8 +24,8 @@ const ShowCase = () => {
                 id: 'showcase-pin',
                 trigger: "#showcase",
                 start: "top top",
-                end: "bottom center",
-                scrub: 1.5,
+                end: "+=1000",      // Fixed value (end center skip hota hai kabhi)
+                scrub: 1.65,
                 anticipatePin: 1,
                 pin: true,
             }
@@ -33,13 +33,15 @@ const ShowCase = () => {
 
         timeline
             .to('.mask img', {
-                scale: 1.1
+                scale: 1.1,
+                ease: 'none',
             })
             .to('.content', {
                 opacity: 1,
-                y: 0,
-                ease: 'power1.out'
-            })
+                y: -50,            // Niche se thoda upar slide hoga
+                ease: 'power2.inOut', // Entrance smooth hogi
+                duration: 0.3,      // Duration thoda lamba rakha hai taaki achhe se dikhe
+            }, "-=0.2")
     }, [isTablet])
 
     return (
