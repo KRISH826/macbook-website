@@ -1,3 +1,4 @@
+import Feature from "@/components/Feature/Feature";
 import Hero from "@/components/Hero";
 import Perfomance from "@/components/perfomance/Perfomance";
 import ProductView from "@/components/ProductView";
@@ -10,6 +11,7 @@ export default function Home() {
       <ProductView />
       <ShowCase />
       <Perfomance />
+      <Feature />
     </>
   );
 }
