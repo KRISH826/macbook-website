@@ -17,11 +17,11 @@ const ProductView = () => {
             <div className='controls'>
                 <p className='info'>MacbookPro 16" in silver/ space black</p>
                 <div className='flex-center gap-5 mt-5'>
-                    <div className="color-control">
+                    {/* <div className="color-control">
                         <div className={clsx('bg-neutral-300', color === '#adb5bd' && 'active')} onClick={() => setColor("#adb5bd")} />
                         <div className={clsx('bg-neutral-900', color === '#2e2c2e' && 'active')} onClick={() => setColor("#2e2c2e")} />
-                    </div>
-                    <div className='size-control'>
+                    </div> */}
+                    <div className='size-control px-3!'>
                         <div className={clsx('bg-neutral-900', scale === 0.06 ? 'bg-white text-black' : 'bg-transparent text-white')} onClick={() => setScale(0.06)}>
                             <p>14"</p>
                         </div>
@@ -37,7 +37,7 @@ const ProductView = () => {
                 gl={{ antialias: true, toneMappingExposure: 1.3 }}
             >
                 <StudioLight />
-                <ModelSwitcher scale={isMobile ? scale - 0.03 : scale} />
+                <ModelSwitcher scale={scale} isMobile={isMobile} />
                 {/* <OrbitControls enableZoom={false} enablePan={false} /> */}
             </Canvas>
         </section>

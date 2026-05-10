@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { features } from "@/app/constants";
 import StudioLight from "../productview/StudioLight";
 import ModelScroll from "./ModelScroll";
+import { OrbitControls } from "@react-three/drei";
 
 const Feature = () => {
     return (
@@ -18,6 +19,7 @@ const Feature = () => {
                 <StudioLight />
                 <ambientLight intensity={0.5} />
                 <ModelScroll sectionId="features" />
+                <OrbitControls enableZoom={false} enablePan={false} />
             </Canvas>
 
             {/* Vertically centering the boxes container */}

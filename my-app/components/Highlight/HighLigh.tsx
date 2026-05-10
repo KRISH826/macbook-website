@@ -15,6 +15,8 @@ const HighLight = () => {
     useGSAP(() => {
         const sectionEl = sectionRef.current;
         if (!sectionEl) return;
+        const masonryEl = sectionEl.querySelector(".masonry");
+        if (!masonryEl) return;
 
         gsap.set([".left-column", ".right-column"], {
             opacity: 0,
@@ -42,7 +44,7 @@ const HighLight = () => {
             ease: "power1.out",
             stagger: 0.15,
             scrollTrigger: {
-                trigger: ".masonry",
+                trigger: masonryEl,
                 start: "top bottom",
                 end: "top center",
                 scrub: 1.5,
@@ -64,15 +66,13 @@ const HighLight = () => {
                     <div>
                         <img src="/sun.png" alt="Sun" />
                         <p className="highlight-copy">A stunning <br />
-                            Liquid Retina XDR <br />
-                            display.</p>
+                            Liquid Retina XDR <br />display.</p>
                     </div>
                 </div>
                 <div className="right-column">
                     <div className="apple-gradient">
                         <img src="/ai.png" alt="AI" />
-                        <p className="highlight-copy">Built for <br />
-                            <span>Apple Intelligence.</span></p>
+                        <p className="highlight-copy px-4 py-2 rounded-lg!">Built for <br /> Apple Intelligence</p>
                     </div>
                     <div>
                         <img src="/battery.png" alt="Battery" />
