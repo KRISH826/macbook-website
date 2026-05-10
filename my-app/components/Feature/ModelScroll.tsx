@@ -1,4 +1,5 @@
 "use client"
+
 import { featureSequence } from '@/app/constants';
 import MacbookModel from '@/models/Macbook';
 import useMacBookStore from '@/store';
@@ -15,10 +16,11 @@ const ModelScroll = ({ sectionId }: { sectionId: string }) => {
     const groupRef = useRef<THREE.Group>(null);
     const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
     const { setTexture } = useMacBookStore();
+
+    // 1. Preload Videos (Essential for smooth transitions)
     useEffect(() => {
         featureSequence.forEach((feature) => {
             const v = document.createElement('video');
-
             Object.assign(v, {
                 src: feature.videoPath,
                 muted: true,
@@ -26,81 +28,74 @@ const ModelScroll = ({ sectionId }: { sectionId: string }) => {
                 preload: 'auto',
                 crossOrigin: 'anonymous',
             });
-
             v.load();
-        })
+        });
     }, []);
 
     useEffect(() => {
         const group = groupRef.current;
         if (!group) return;
 
-        gsap.set('.box', {
-            opacity: 0,
-            y: 40,
-        })
-
-        gsap.set('.box1', {
-            opacity: 1,
-            y: 0,
-        })
-
-        const modelTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: `#${sectionId}`,
-                start: "top top",
-                end: "bottom top",
-                scrub: 1.5,
-                pin: true,
-                invalidateOnRefresh: true,
-            }
-        })
-        // sync the timeline with the feature sequence
+        gsap.set('.box', { opacity: 0, y: 100 });
         const timeline = gsap.timeline({
             scrollTrigger: {
-                trigger: `#${sectionId}`,
+                trigger: "#features", // Poora section pin hoga
                 start: "top top",
-                end: "bottom top",
+                end: "+=5000",        // Zyada scroll space taaki overlap na ho
                 scrub: 1.5,
+                pin: true,          
+                pinSpacing: true,     // Niche wale section ko dhakka dega (Overlap fix)
                 invalidateOnRefresh: true,
             }
         });
 
-        modelTimeline.to(group.rotation, { y: Math.PI * 2, ease: 'power1.inOut' })
-
+        // --- FEATURE 1: EMAIL AI ---
         timeline
-            .addLabel('feature1')
-            .call(() => setTexture('/videos/feature-1.mp4'))
-            .to('.box1', { opacity: 1, y: 0, delay: 1 })
-             
-            .addLabel('feature2', '+=1')
-            .call(() => setTexture('/videos/feature-2.mp4'))
-            .to('.box2', { opacity: 1, y: 0 })
+            .to('.box1', { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                onStart: () => setTexture('/videos/feature-1.mp4') 
+            })
+            .to({}, { duration: 2 }) // User ko padhne ka waqt do
+            .to('.box1', { opacity: 0, y: -100, duration: 1 })
 
-            .call(() => setTexture('/videos/feature-3.mp4'))
-            .to('.box3', { opacity: 1, y: 0 })
+            // --- FEATURE 2: IMAGE AI ---
+            .addLabel("step2")
+            .to('.box2', { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1,
+                onStart: () => setTexture('/videos/feature-2.mp4')
+            }, "step2")
+            .to({}, { duration: 2 })
+            .to('.box2', { opacity: 0, y: -100, duration: 1 })
 
-            .call(() => setTexture('/videos/feature-4.mp4'))
-            .to('.box4', { opacity: 1, y: 0 })
-
-            .call(() => setTexture('/videos/feature-5.mp4'))
-            .to('.box5', { opacity: 1, y: 0 })
+            // --- FEATURE 3: SUMMARIZE AI ---
+            .addLabel("step3")
+            .to('.box3', { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1,
+                onStart: () => setTexture('/videos/feature-3.mp4')
+            }, "step3")
+            .to({}, { duration: 2 })
+            .to('.box3', { opacity: 0, y: -100, duration: 1 });
 
         return () => {
-            modelTimeline.scrollTrigger?.kill();
-            modelTimeline.kill();
-            timeline.scrollTrigger?.kill();
+            if (timeline.scrollTrigger) timeline.scrollTrigger.kill();
             timeline.kill();
         };
-    }, [sectionId, isMobile]);
+    }, [setTexture]); // Dependency fix
 
     return (
         <group ref={groupRef}>
-            <Suspense fallback={<Html><h1 className="text-white text-2xl uppercase">Loading...</h1></Html>}>
-                <MacbookModel scale={isMobile ? 0.02 : 0.04} position={[0, -0.32, 0]} />
+            <Suspense fallback={<Html center><h1 className="text-white text-2xl">Loading...</h1></Html>}>
+                <MacbookModel scale={isMobile ? 0.03 : 0.05} position={[0, 0, 0]} 
+                    rotation={[0, 0, 0]} />
             </Suspense>
         </group>
     )
 }
 
-export default ModelScroll
+export default ModelScroll;
