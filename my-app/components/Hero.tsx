@@ -14,7 +14,13 @@ const Hero = () => {
   return (
     <section id='hero'>
       <h1>MacBook Pro</h1>
-      <Image src="/title.png" alt="MacBook Pro" width={500} height={100} />
+      <Image
+        src="/title.png"
+        alt="MacBook Pro"
+        width={500}
+        height={100}
+        style={{ width: '100%', maxWidth: '42rem', height: 'auto' }}
+      />
       {/* Video */}
       <video src="/videos/hero.mp4" autoPlay muted playsInline ref={videoRef}></video>
       <button>Buy</button>

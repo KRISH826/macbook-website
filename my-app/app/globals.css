@@ -53,7 +53,7 @@ html {
 
 body {
   width: 100vw;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   background-color: #000;
   color: var(--color-dark-100);
   font-family: var(--font-semibold);
@@ -297,6 +297,10 @@ body {
 
   #highlights {
     @apply container mx-auto lg:py-40 max-lg:px-5;
+
+    .highlight-copy {
+      @apply translate-y-10 opacity-0;
+    }
 
     h2 {
       @apply text-white font-semibold text-3xl lg:text-7xl text-center max-w-3xl mx-auto;

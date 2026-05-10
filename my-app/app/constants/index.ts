@@ -1,3 +1,16 @@
+type PerformanceImage = {
+    id: string;
+    src: string;
+};
+
+type PerformanceImagePosition = {
+    id: string;
+    left?: number;
+    right?: number;
+    bottom?: number;
+    transform?: string;
+};
+
 const navLinks = [
     { label: "Store" },
     { label: "Mac" },
@@ -26,7 +39,7 @@ const noChangeParts = [
     "Object_10",
 ];
 
-const performanceImages = [
+const performanceImages: PerformanceImage[] = [
     { id: "p1", src: "/performance1.png" },
     { id: "p2", src: "/performance2.png" },
     { id: "p3", src: "/performance3.png" },
@@ -36,7 +49,7 @@ const performanceImages = [
     { id: "p7", src: "/performance7.png" },
 ];
 
-const performanceImgPositions = [
+const performanceImgPositions: PerformanceImagePosition[] = [
     {
         id: "p1",
         left: 5,
@@ -80,35 +93,23 @@ const features = [
         icon: "/feature-icon1.svg",
         highlight: "Email AI.",
         text: "Summarize and draft replies to emails instantly, so you stay on top of your inbox.",
-        styles: "left-5 md:left-20 top-[20%] opacity-0 translate-y-5",
+        // top-1/2 aur -translate-y-1/2 se vertical center hoga
+        styles: "left-5 md:left-20 top-1/2 -translate-y-1/2 opacity-0", 
     },
     {
         id: 2,
         icon: "/feature-icon2.svg",
         highlight: "Image AI.",
         text: "Generate or edit images with ease. Just type what you imagine, and let AI bring it to life.",
-        styles: "right-5 md:right-20 top-[30%] opacity-0 translate-y-5",
+        // Isko right side par rakha hai par vertical center wahi rahega
+        styles: "right-5 md:right-20 top-1/2 -translate-y-1/2 opacity-0", 
     },
     {
         id: 3,
         icon: "/feature-icon3.svg",
         highlight: "Summarize AI.",
         text: "Turn long articles, reports, or notes into clear, bite-sized summaries in seconds.",
-        styles: "left-5 md:left-20 top-[50%] opacity-0 translate-y-5",
-    },
-    {
-        id: 4,
-        icon: "/feature-icon4.svg",
-        highlight: "AirDrop.",
-        text: "Wirelessly share photos, large files, and more between your iPhone, your Mac, & other devices.",
-        styles: "right-5 md:right-20 top-[70%] opacity-0 translate-y-5",
-    },
-    {
-        id: 5,
-        icon: "/feature-icon5.svg",
-        highlight: "Writing Tool.",
-        text: "Write smarter and faster, whether it’s blogs, essays, or captions, AI helps polish your words.",
-        styles: "left-5 md:left-20 top-[90%] opacity-0 translate-y-5",
+        styles: "left-5 md:left-20 top-1/2 -translate-y-1/2 opacity-0",
     },
 ];
 
