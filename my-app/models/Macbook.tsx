@@ -59,17 +59,24 @@ export default function MacbookModel(props: ThreeElements['group']) {
     '/models/macbook-transformed.glb'
   ) as unknown as GLTFResult;
   const { color, texture, } = useMacBookStore();
-  const screen = useVideoTexture(texture);
+  const screen = useVideoTexture(texture, {
+    muted: true,
+    loop: true,
+    autoplay: true,
+    crossOrigin: 'anonymous',
+    playsInline: true,
+    start: true,
+  });
 
   useEffect(() => {
-        scene.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
-                if (!noChangeParts.includes(child.name)) {
-                    child.material.color = new THREE.Color(color);
-                }
-            }
-        });
-    }, [color, scene]);
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        if (!noChangeParts.includes(child.name)) {
+          child.material.color = new THREE.Color(color);
+        }
+      }
+    });
+  }, [color, scene]);
 
   return (
     <group {...props} dispose={null}>
