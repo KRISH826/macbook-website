@@ -13,8 +13,16 @@ const ModelSwitcher = ({
 }: ModelSwitcherProps) => {
   const showLargeModel = scale >= 0.08
 
+  const controlConfig = {
+    snap: true,
+    speed: 1,
+    zoom: 1,
+    config: {mass: 1, tension: 0, friction: 26},
+    azimuth: [-Infinity, Infinity] as [number, number],
+  }
+
   return (
-    <PresentationControls>
+    <PresentationControls {...controlConfig}>
       {showLargeModel ? (
         <group>
           <Macbook16 scale={isMobile ? 0.05 : 0.08} />
