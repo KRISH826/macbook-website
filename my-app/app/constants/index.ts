@@ -1,3 +1,16 @@
+type PerformanceImage = {
+    id: string;
+    src: string;
+};
+
+type PerformanceImagePosition = {
+    id: string;
+    left?: number;
+    right?: number;
+    bottom?: number;
+    transform?: string;
+};
+
 const navLinks = [
     { label: "Store" },
     { label: "Mac" },
@@ -26,7 +39,7 @@ const noChangeParts = [
     "Object_10",
 ];
 
-const performanceImages = [
+const performanceImages: PerformanceImage[] = [
     { id: "p1", src: "/performance1.png" },
     { id: "p2", src: "/performance2.png" },
     { id: "p3", src: "/performance3.png" },
@@ -36,7 +49,7 @@ const performanceImages = [
     { id: "p7", src: "/performance7.png" },
 ];
 
-const performanceImgPositions = [
+const performanceImgPositions: PerformanceImagePosition[] = [
     {
         id: "p1",
         left: 5,
