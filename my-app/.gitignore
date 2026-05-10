@@ -9,7 +9,20 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+# Next.js
+.next/
 
+# OpenNext
+.open-next/
+
+# Cloudflare
+.wrangler/
+
+# logs
+*.log
+
+# dependencies
+node_modules/
 # testing
 /coverage
 
