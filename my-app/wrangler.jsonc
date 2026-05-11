@@ -1,0 +1,9 @@
+{
+  "name": "macbook-website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-11",
+
+  "assets": {
+    "directory": ".open-next/assets"
+  }
+}
