@@ -11,7 +11,7 @@ const Feature = () => {
     return (
         // Added relative and h-screen to lock the height
         <section id="features" className="relative h-[85vh] w-full overflow-hidden bg-black">
-            <h2 className="absolute top-10 left-0 right-0 text-center text-3xl font-bold text-white z-10">
+            <h2 className="absolute top-10 left-0 right-0 text-white z-10">
                 See it all in a new light.
             </h2>
 
