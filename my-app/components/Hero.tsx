@@ -15,7 +15,7 @@ const Hero = () => {
     <section id='hero'>
       <h1>MacBook Pro</h1>
       <Image
-        src="/title.png"
+        src="/title.webp"
         alt="MacBook Pro"
         width={500}
         height={100}
