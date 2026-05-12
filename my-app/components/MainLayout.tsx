@@ -16,7 +16,7 @@ export default function MainLayout() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
