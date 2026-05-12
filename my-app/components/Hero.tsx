@@ -5,6 +5,8 @@ import React, { useEffect } from 'react'
 
 const Hero = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const headingRef = React.useRef<HTMLHeadingElement>(null);
+  const imageRef = React.useRef<HTMLImageElement>(null);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 2;
@@ -13,8 +15,9 @@ const Hero = () => {
 
   return (
     <section id='hero'>
-      <h1>MacBook Pro</h1>
+      <h1 ref={headingRef}>MacBook Pro</h1>
       <Image
+        ref={imageRef}
         src="/title.webp"
         alt="MacBook Pro"
         width={500}
