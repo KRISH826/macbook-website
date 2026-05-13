@@ -12,7 +12,7 @@ const Hero = ({ loading }: { loading: boolean }) => {
     const video = videoRef.current;
     if (!video || loading) return;
 
-    video.playbackRate = 2;
+    video.playbackRate = 1.25;
     video.currentTime = 0;
     void video.play().catch(() => {
       // Ignore autoplay rejections so the UI stays responsive.
@@ -28,7 +28,7 @@ const Hero = ({ loading }: { loading: boolean }) => {
       {
         opacity: 0,
         y: 50,
-        filter: "blur(7px)",
+        filter: "blur(1px)",
       },
       {
         opacity: 1,
@@ -53,6 +53,7 @@ const Hero = ({ loading }: { loading: boolean }) => {
         alt="MacBook Pro"
         width={500}
         height={100}
+        className='opacity-0'
         style={{ width: '100%', maxWidth: '42rem', height: 'auto' }}
       />
       {/* Video */}
