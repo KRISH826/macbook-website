@@ -12,7 +12,7 @@ const Hero = ({ loading }: { loading: boolean }) => {
     const video = videoRef.current;
     if (!video || loading) return;
 
-    video.playbackRate = 1.25;
+    video.playbackRate = 1;
     video.currentTime = 0;
     void video.play().catch(() => {
       // Ignore autoplay rejections so the UI stays responsive.
