@@ -30,7 +30,7 @@ export default function MainLayout() {
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <Hero />
+        <Hero loading={loading} />
         <ProductView />
         <ShowCase />
         <Perfomance />
