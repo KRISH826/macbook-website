@@ -1,21 +1,52 @@
 "use client"
 
+import gsap from 'gsap';
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-const Hero = () => {
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-  const headingRef = React.useRef<HTMLHeadingElement>(null);
-  const imageRef = React.useRef<HTMLImageElement>(null);
+const Hero = ({ loading }: { loading: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 2;
-    }
-  }, []);
+    const video = videoRef.current;
+    if (!video || loading) return;
+
+    video.playbackRate = 2;
+    video.currentTime = 0;
+    void video.play().catch(() => {
+      // Ignore autoplay rejections so the UI stays responsive.
+    });
+  }, [loading]);
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (!image || loading) return;
+
+    const animation = gsap.fromTo(
+      image,
+      {
+        opacity: 0,
+        y: 50,
+        filter: "blur(10px)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 1.5,
+        ease: "power4.out",
+      }
+    );
+
+    return () => {
+      animation.kill();
+    };
+  }, [loading]);
 
   return (
     <section id='hero'>
-      <h1 ref={headingRef}>MacBook Pro</h1>
+      <h1>MacBook Pro</h1>
       <Image
         ref={imageRef}
         src="/title.webp"
@@ -25,7 +56,7 @@ const Hero = () => {
         style={{ width: '100%', maxWidth: '42rem', height: 'auto' }}
       />
       {/* Video */}
-      <video src="/videos/hero.mp4" autoPlay muted playsInline ref={videoRef}></video>
+      <video src="/videos/hero.mp4" muted playsInline ref={videoRef}></video>
       <button>Buy</button>
       <p>From $1,299. Available starting 2026.</p>
     </section>
