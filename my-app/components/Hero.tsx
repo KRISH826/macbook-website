@@ -28,13 +28,13 @@ const Hero = ({ loading }: { loading: boolean }) => {
       {
         opacity: 0,
         y: 50,
-        filter: "blur(10px)",
+        filter: "blur(7px)",
       },
       {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 1.5,
+        duration: 2,
         ease: "power4.out",
       }
     );
