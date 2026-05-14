@@ -61,7 +61,7 @@ const HighLight = () => {
                 <div className="left-column">
                     <div>
                         <img src="/laptop.png" alt="Laptop" />
-                        <p className="highlight-copy">Fly through demanding tasks up to 9.8x faster.</p>
+                        <p className="highlight-copy ">Fly through demanding tasks up to 9.8x faster.</p>
                     </div>
                     <div>
                         <img src="/sun.png" alt="Sun" />
@@ -74,7 +74,7 @@ const HighLight = () => {
                         <img src="/ai.png" alt="AI" />
                         <p className="highlight-copy px-4 py-2 rounded-lg!">Built for <br /> Apple Intelligence</p>
                     </div>
-                    <div>
+                    <div className="sm:p-10 p-6">
                         <img src="/battery.png" alt="Battery" />
                         <p className="highlight-copy">Up to <span className="green-gradient">14 more hours</span> battery life. <span className="text-dark-100">(Up to 24 hours total.)</span></p>
                     </div>
