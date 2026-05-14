@@ -176,7 +176,7 @@ body {
     }
 
     #canvas {
-      @apply !w-full !h-[80vh] lg:!h-dvh relative z-40;
+      @apply w-full! h-[80vh]! lg:h-dvh! relative z-40;
     }
   }
 
@@ -231,10 +231,10 @@ body {
     }
 
     .wrapper {
-      @apply w-full lg:w-7xl 2xl:w-[100rem] max-lg:h-auto h-[50vh] lg:h-screen relative max-lg:grid max-lg:grid-cols-1 max-lg:place-items-center max-lg:gap-8 max-lg:px-6 max-lg:py-12;
+      @apply w-full lg:w-7xl 2xl:w-400 max-lg:h-auto h-[50vh] lg:h-screen relative max-lg:grid max-lg:grid-cols-1 max-lg:place-items-center max-lg:gap-8 max-lg:px-6 max-lg:py-12;
 
       img {
-        @apply max-w-40 lg:max-w-[27rem] 2xl:max-w-[35rem] object-cover object-center;
+        @apply max-w-40 lg:max-w-108 2xl:max-w-140 object-cover object-center;
       }
 
       @media (max-width: 1024px) {
